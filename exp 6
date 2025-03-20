@@ -1,0 +1,78 @@
+ques 1 Write a program to sort a list of Employee objects (name, age, salary) using lambda expressions. 
+code:
+// Source code is decompiled from a .class file using FernFlower decompiler.
+import java.io.PrintStream;
+import java.util.ArrayList;
+import java.util.Objects;
+
+public class EmployeeSortExample {
+   public EmployeeSortExample() {
+   }
+
+   public static void main(String[] var0) {
+      ArrayList var1 = new ArrayList();
+      var1.add(new Employee("Yubin", 28, 50000.0));
+      var1.add(new Employee("Sagar", 24, 60000.0));
+      var1.add(new Employee("Shivam", 30, 45000.0));
+      var1.add(new Employee("David", 26, 55000.0));
+      var1.sort((var0x, var1x) -> {
+         return var0x.name.compareTo(var1x.name);
+      });
+      System.out.println("Sorted by Name:");
+      PrintStream var10001 = System.out;
+      Objects.requireNonNull(var10001);
+      var1.forEach(var10001::println);
+      var1.sort((var0x, var1x) -> {
+         return Integer.compare(var0x.age, var1x.age);
+      });
+      System.out.println("\nSorted by Age:");
+      var10001 = System.out;
+      Objects.requireNonNull(var10001);
+      var1.forEach(var10001::println);
+      var1.sort((var0x, var1x) -> {
+         return Double.compare(var0x.salary, var1x.salary);
+      });
+      System.out.println("\nSorted by Salary:");
+      var10001 = System.out;
+      Objects.requireNonNull(var10001);
+      var1.forEach(var10001::println);
+   }
+}
+
+ques 2Create a program to use lambda expressions and stream operations to filter students scoring above 75%, sort them by marks, and display their names.
+import java.util.*;
+import java.util.stream.*;
+
+class Student {
+    String name;
+    double marks;
+
+    public Student(String name, double marks) {
+        this.name = name;
+        this.marks = marks;
+    }
+
+    @Override
+    public String toString() {
+        return name + " (" + marks + "%)";
+    }
+}
+
+public class StudentFilterSort {
+    public static void main(String[] args) {
+        List<Student> students = Arrays.asList(
+            new Student("Alice", 82.5),
+            new Student("Bob", 68.0),
+            new Student("Charlie", 91.0),
+            new Student("David", 74.5),
+            new Student("Eva", 88.0)
+        );
+
+        System.out.println("Students scoring above 75%, sorted by marks:");
+        students.stream()
+                .filter(s -> s.marks > 75)
+                .sorted(Comparator.comparingDouble(s -> s.marks))
+                .map(s -> s.name)
+                .forEach(System.out::println);
+    }
+}
